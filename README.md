@@ -72,7 +72,7 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 * The usage of YAML playbooks help with the configuration of the complex and multi-tier IT environment.
 * Ansible was able to provision various packages and dependencies on multiple Virtual Machines with the help of a YAML playbook saving significant amount of time and    
   resources. 
-* In our project e were able to configure DVWA(Dmn Vulnerable Web Application) and ELK stack on different VMs  with the help of these playbooks.
+* In our project We were able to configure DVWA(Dmn Vulnerable Web Application) and ELK stack on different VMs  with the help of these playbooks.
 
 
 The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created as follows:
@@ -95,7 +95,8 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
 
   		    * `docker`: Python client for Docker, required by Ansbile to control the state of Docker containers.
 
-		* Downloaded the Docker container called `sebp/elk:761`. `sebp` is the organization that made the container. `elk` is the container and `761` is the version.
+		* Downloaded the Docker container called `sebp/elk:761`. `sebp` is the organization that made the container.
+		  `elk` is the container and `761` is the version.
 
 		* Configured the container to start with the following port mappings:
 			- `5601:5601`
@@ -139,7 +140,7 @@ SSH into the control node and follow the steps below:
   The IP addresses of Web-1 and Web-2 (10.0.0.5 and 10.0.0.6)
 - Create the playbook file [Filebeat Playbook](Ansible/filebeat-playbook.yml) under `/etc/ansible/roles and execute it.
 - Verify the successful execution of the playbook, navigate to http://[ELK-Server IP]:5601/app/kibana to check that the filebeat installation worked as expected.
-- You can click “Check Data” under Home --> Add Data --> System Logs --> Module Status. It should say  [“ Data successfully received form this module”](Ansible/filebeat.png)
+- You can click “Check Data” under Home --> Add Data --> System Logs --> Module Status. It should say  [“ Data successfully received form this module”](Ansible/filebeat.PNG)
 
 ##__Metricbeat Installation__
 
@@ -149,6 +150,6 @@ SSH into the control node and follow the steps below:
   and Web-2 (10.0.0.5 and 10.0.0.6)
 - Create the playbook file filebeat-playbook.yml under `/etc/ansible/roles and execute it.
 - Verify the successful execution of the playbook, navigate to http://[ELK-Server IP]:5601/app/kibana to check that the metricbeat installation worked as expected.
-- On the Metricbeat Installation Page in the ELK server GUI, scroll to **Step 5: Module Status** and click **Check Data*. It should say  [“ Data successfully received form this module”](Ansible/metricbeat.png)
+- On the Metricbeat Installation Page in the ELK server GUI, scroll to **Step 5: Module Status** and click **Check Data*. It should say  [“ Data successfully received form this module”](Ansible/metricbeat.PNG)
 
 
