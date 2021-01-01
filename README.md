@@ -4,7 +4,7 @@ part of Project1 completed during the Cybersecurity bootcamp in 2020-21
 
 The files in this repository were used to configure the network depicted below.
 
-[Project1-NetworkDiagram](Images/Project1-NetworkDiagram.png)
+[Project1-NetworkDiagram](Diagrams/Project1-NetworkDiagram.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the diagram file may be used to install only certain pieces of it, such as Filebeat.
 
