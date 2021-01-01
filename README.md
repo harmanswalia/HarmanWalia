@@ -58,17 +58,13 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the Jump-Box-Provisioner machine can accept connections from the Internet.
 
-Access to this machine is only allowed from the following IP addresses
+Access to this machine is only allowed from the following IP addresses __99.234.136.232 (workstation IP address)__
 
-__99.234.136.232 (workstation IP address)__
+Machines within the network can only be accessed by __Jump-Box-Provisioner.__ 
 
-Machines within the network can only be accessed by __Jump-Box-Provisioner.__
+The same machine is allowed to access the ELK VM. Its Private IP address is 10.0.1.4/16
 
-The same machine is allowed to access the ELK VM.
-
-Its Private IP address is 10.0.1.4/16
-
-##A summary of the access policies in place can be found in the table below.
+## A summary of the access policies in place can be found in the table below.
 
 | Name       | Publicly Accessible | Allowed IP Addresses |
 |------------|---------------------|----------------------|
@@ -91,7 +87,7 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
 . From the Ansible container, created a new playbook: install-elk.yml
 
 	. The header of the playbook specified `elk` as the target hosts, it was updated
-	   on Ansible [HOSTS](Ansible/hosts.png)
+	   on Ansible hosts file.
 		
 	. The following tasks were added to the playbook file:
 
@@ -125,7 +121,7 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-[__docker ps__](Ansible/'ELK-Server docker ps.png')
+[__docker ps__](Ansible/'ELK-Server docker ps.PNG')
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
