@@ -4,11 +4,11 @@ part of Project1 completed during the Cybersecurity bootcamp in 2020-21
 
 The files in this repository were used to configure the network depicted below.
 
-[Project1-NetworkDiagram](Diagrams/Project1-NetworkDiagram.png)
+![Project1-NetworkDiagram](Diagrams/Project1-NetworkDiagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the diagram file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
- 	- [Filebeat Playbook](filebeat-playbook.yml)
+[Filebeat Playbook](filebeat-playbook.yml)
 	
 __This document contains the following details:__
 - Description of the Topology
@@ -23,53 +23,56 @@ __This document contains the following details:__
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the Damn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly available, in addition to restricting high traffic to the network.
+Load balancing ensures that the application will be highly available, in addition to restricting overloading of traffic to the network.
 
-What aspect of security do load balancers protect?
-Load Balancer is secure by default and is part of the virtual network which is a private and isolated network. It helps protect the private network with its in-built Network Address Translation(NAT) capability thus preventing the VMs from any outside attacks.
+#__security Aspect of load balancers__
+Load Balancer is secure by default and is part of the virtual network which is a private and an isolated network. It helps protect the private network with its in-built *Network Address Translation(NAT)* capability thus preventing the VMs from any outside attacks.
 
- What is the advantage of a jump box?
+#__Advantage of a jump box__
 It is highly secured and hardened system that acts as an interface between a firewall and an internal network. The user needs to be authenticated by the jumpbox before it can access the private network. This help decrease the ability of hackers or their malware creations to steal admin credentials and take over an environment.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the network and system logs.
-What does Filebeat watch for?
+
+#__Filebeat__
 Filebeat is installed as an agent on the system and it monitors the specified log files or locations, collects log events, and forwards them either to Elasticsearch or Logstash for indexing.
-What does Metricbeat record?
+
+#__Metricbeat__
 Metricbeat takes the metrics and statistics that it collects and ships them to the specified output such as Elasticsearch or Logstash.
+
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table.
-Name	Function	IP Address	Operating System
-Jump Box	Gateway	10.0.1.4(Private)//40.85.146.108(Public)	Linux
-Web-1	Virtual Machine	10.0.0.5(Private)	Linux
-Web-2	Virtual Machine	10.0.0.6(Private)	Linux
-ELK-Server	Virtual Machine	10.1.0.4(Private)//13.68.153.197(Public)	Linux
+
+| Name        | \|Function      | IP Address                               | Operating System |
+|-------------|---------------- |----------------------------------------- |------------------|
+| \Jump Box   | Gateway         | 10.0.1.4(Private)//40.85.146.108(Public) | Linux            |
+| \Web-1      | Virtual Machine | 10.0.0.5(Private)                        | Linux            |
+| \Web-2      | Virtual Machine | 10.0.0.6(Private)                        | Linux            |
+| \ELK-Server | Virtual Machine | 10.1.0.4(Private)//13.68.153.197(Public) | Linux            |
 
 ### Access Policies
 The machines on the internal network are not exposed to the public Internet. 
-
 Only the Jump-Box-Provisioner machine can accept connections from the Internet. 
 Access to this machine is only allowed from the following IP addresses
-99.234.136.232 (workstation IP address)
+_99.234.136.232 (workstation IP address)_
 
-Machines within the network can only be accessed by Jump-Box-Provisioner.
-Which machine did you allow to access your ELK VM? What was its IP address? _
-Jump-Box-Provisioner
-What was its IP address? _
- Private IP address is 10.0.1.4/16
+Machines within the network can only be accessed by __Jump-Box-Provisioner.__
+The same machine is allowed to access the ELK VM
+Its Private IP address is 10.0.1.4/16
 
 A summary of the access policies in place can be found in the table below.
-Name	Publicly Accessible	Allowed IP Addresses 
-Jump Box	Yes	99.234.136.232 
-Web-1	No	10.0.1.4
-Web-2	No	10.0.1.4
-ELK-Server	No	10.0.1.4
+| Name       | Publicly Accessible | Allowed IP Addresses |
+|------------|---------------------|----------------------|
+| Jump Box   | Yes                 | 99.234.136.232       |
+| Web-1      | No                  | 10.0.1.4             |
+| Web-2      | No                  | 10.0.1.4             |
+| ELK-Server | No                  | 10.0.1.4             |
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-What is the main advantage of automating configuration with Ansible?
-The usage of YAML playbooks help with the configuration of the complex and multi-tier IT environment.
-Ansible was able to provision various packages and dependencies on multiple Virtual Machines with the help of a YAML playbook saving significant amount of time and resources. In our project e were able to configure DVWA(Dmn Vulnerable Web Application) and ELK stack on different VMs  with the help of these playbooks.
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because:
+. The usage of YAML playbooks help with the configuration of the complex and multi-tier IT environment.
+. Ansible was able to provision various packages and dependencies on multiple Virtual Machines with the help of a YAML playbook saving significant amount of time and    
+  resources. 
+. In our project e were able to configure DVWA(Dmn Vulnerable Web Application) and ELK stack on different VMs  with the help of these playbooks.
 
 
 The playbook implements the following tasks:
@@ -78,6 +81,7 @@ The playbook implements the following tasks:
 •	Started and attached to the ansible docker container (sudo docker start Interesting_ganguly)/(sudo docker attach Interesting_ganguly)
 •	Created the ELK playbook in /etc/ansible directory, the filename is install-ELK.yml.
 •	Defined the ELK-Server VM Private IP address under /etc/ansible/hosts files so Ansible running on JumBox knows where to install the required packages for Elk Stack container. Executed the install-ELK.yml with command “ansible -playbook install-ELK.yml”. Verified the connection to the ELK stack container by “docker ps” command.
+
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 ELK-Server docker ps.png
 
