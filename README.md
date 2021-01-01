@@ -88,10 +88,10 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 
 The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created as follows:
 
+. From the Ansible container, created a new playbook: install-elk.yml
 
-	. From the Ansible container, created a new playbook: install-elk.yml
-
-	. The header of the playbook specified `elk` as the target hosts, it was updated on Ansible [HOSTS](Ansible/hosts.png)
+	. The header of the playbook specified `elk` as the target hosts, it was updated
+	   on Ansible [HOSTS](Ansible/hosts.png)
 		
 	. The following tasks were added to the playbook file:
 
@@ -105,10 +105,11 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
 
 		. Installed the following `pip` packages:
 
-  		    . `docker`: Python client for Docker, required by Ansbile to control the state of Docker containers.
+  		    . `docker`: Python client for Docker, required by Ansbile to control the state of
+		       Docker containers.
 
-		. Downloaded the Docker container called `sebp/elk:761`. `sebp` is the organization that made the container.
-		  `elk` is the container and `761` is the version.
+		. Downloaded the Docker container called `sebp/elk:761`. `sebp` is the organization that 
+		  made the container. `elk` is the container and `761` is the version.
 
 		. Configured the container to start with the following port mappings:
 			- `5601:5601`
@@ -118,9 +119,12 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
    		. Executed the install-ELK.yml with command “ansible -playbook install-ELK.yml”. 
 
 		. Started the container. Verified the connection to the ELK stack container by "docker ps" command.
+	
+
 
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
+
 [__docker ps__](Ansible/'ELK-Server docker ps.png')
 
 ### Target Machines & Beats
@@ -167,8 +171,7 @@ SSH into the control node and follow the steps below:
 
 - Copy the  [Metricbeat Configuration file](Ansible/metricbeat-config.yml) to /etc/ansible/files.
 - Update the metricbeat-config.yml file to include IP address of the ELK-Server on line 1106 and 1806.
-- Edit the [/etc/ansible/hosts](Ansible/hosts.png) file to include the IP addresses of the Webservers where metricbeat agent need to be installed. The IP addresses of Web-1   
-  and Web-2 (10.0.0.5 and 10.0.0.6)
+- Edit the [/etc/ansible/hosts](Ansible/hosts.png) file to include the IP addresses of the Webservers where metricbeat agent need to be installed.
 - Create the playbook file filebeat-playbook.yml under `/etc/ansible/roles and execute it.
 - Verify the successful execution of the playbook, navigate to http://[ELK-Server IP]:5601/app/kibana to check that the metricbeat installation worked as expected.
 - On the Metricbeat Installation Page in the ELK server GUI, scroll to **Step 5: Module Status** and click **Check Data*. It should say  [“ Data successfully received form this module”](Ansible/metricbeat.PNG)
