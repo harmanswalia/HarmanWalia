@@ -1,6 +1,6 @@
 # HarmanWalia
 part of Project1 completed during the Cybersecurity bootcamp in 2020-21
-## Automated ELK Stack Deployment
+## __Automated ELK Stack Deployment__
 
 The files in this repository were used to configure the network depicted below.
 
