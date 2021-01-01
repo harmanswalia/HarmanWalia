@@ -8,7 +8,7 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
-[Filebeat Playbook](filebeat-playbook.yml)
+[Filebeat Playbook](Ansible/filebeat-playbook.yml)
 	
 __This document contains the following details:__
 - Description of the Topology
@@ -25,28 +25,28 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly available, in addition to restricting overloading of traffic to the network.
 
-__Security Aspect of load balancers__
+__Security Aspect of load balancers__:
 Load Balancer is secure by default and is part of the virtual network which is a private and an isolated network. It helps protect the private network with its in-built *Network Address Translation(NAT)* capability thus preventing the VMs from any outside attacks.
 
-__Advantage of a jump box__
+__Advantage of a jump box__:
 It is highly secured and hardened system that acts as an interface between a firewall and an internal network. The user needs to be authenticated by the jumpbox before it can access the private network. This help decrease the ability of hackers or their malware creations to steal admin credentials and take over an environment.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the network and system logs.
 
-__Filebeat__
+__Filebeat__:
 Filebeat is installed as an agent on the system and it monitors the specified log files or locations, collects log events, and forwards them either to Elasticsearch or Logstash for indexing.
 
-__Metricbeat__
+__Metricbeat__:
 Metricbeat takes the metrics and statistics that it collects and ships them to the specified output such as Elasticsearch or Logstash.
 
 The configuration details of each machine may be found below.
 
 | Name        | \|Function      | IP Address                               | Operating System |
 |-------------|---------------- |----------------------------------------- |------------------|
-| \Jump Box   | Gateway         | 10.0.1.4(Private)//40.85.146.108(Public) | Linux            |
-| \Web-1      | Virtual Machine | 10.0.0.5(Private)                        | Linux            |
-| \Web-2      | Virtual Machine | 10.0.0.6(Private)                        | Linux            |
-| \ELK-Server | Virtual Machine | 10.1.0.4(Private)//13.68.153.197(Public) | Linux            |
+|  Jump Box   | Gateway         | 10.0.1.4(Private)//40.85.146.108(Public) | Linux            |
+|  Web-1      | Virtual Machine | 10.0.0.5(Private)                        | Linux            |
+|  Web-2      | Virtual Machine | 10.0.0.6(Private)                        | Linux            |
+|  ELK-Server | Virtual Machine | 10.1.0.4(Private)//13.68.153.197(Public) | Linux            |
 
 ### Access Policies
 The machines on the internal network are not exposed to the public Internet 
@@ -75,51 +75,51 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 * In our project e were able to configure DVWA(Dmn Vulnerable Web Application) and ELK stack on different VMs  with the help of these playbooks.
 
 
-The ELK installation playbook [Install-ELK](Ansible/Install-elk.yml) is created as follows:
+The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created as follows:
 
 
-	- From the Ansible container, created a new playbook: install-elk.yml
+	* From the Ansible container, created a new playbook: install-elk.yml
 
-	- The header of the playbook specified `elk` as the target hosts, it was updated on Ansible [HOSTS](Ansible/hosts.png)
+	* The header of the playbook specified `elk` as the target hosts, it was updated on Ansible [HOSTS](Ansible/hosts.png)
 		
-	- The following tasks were added to the playbook file:
+	* The following tasks were added to the playbook file:
 
-		- Set the `vm.max_map_count` to `262144` so the target VM, ELK-Server to use more memory. The ELK container will not run without this setting.
+		* Set the `vm.max_map_count` to `262144` so the target VM, ELK-Server to use more memory. The ELK container will not run without this setting.
 
-		- Installed the following `apt` packages:
+		* Installed the following `apt` packages:
 
-		    - `docker.io`: The Docker engine, used for running containers.
-		    - `python3-pip`: Package used to install Python software.
+		    * `docker.io`: The Docker engine, used for running containers.
+		    * `python3-pip`: Package used to install Python software.
 
-		- Installed the following `pip` packages:
+		* Installed the following `pip` packages:
 
-  		   - `docker`: Python client for Docker, required by Ansbile to control the state of Docker containers.
+  		    * `docker`: Python client for Docker, required by Ansbile to control the state of Docker containers.
 
-		- Downloaded the Docker container called `sebp/elk:761`. `sebp` is the organization that made the container. `elk` is the container and `761` is the version.
+		* Downloaded the Docker container called `sebp/elk:761`. `sebp` is the organization that made the container. `elk` is the container and `761` is the version.
 
-		- Configured the container to start with the following port mappings:
+		* Configured the container to start with the following port mappings:
 			- `5601:5601`
 			- `9200:9200`
 			- `5044:5044`
 
-   		- Executed the install-ELK.yml with command “ansible -playbook install-ELK.yml”. 
+   		* Executed the install-ELK.yml with command “ansible -playbook install-ELK.yml”. 
 
-		- Started the container. Verified the connection to the ELK stack container by "docker ps" command.
+		* Started the container. Verified the connection to the ELK stack container by "docker ps" command.
 
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
-[__docker ps__](Ansible/ELK-Server docker ps.png)
+[__docker ps__](Ansible/'ELK-Server docker ps.png')
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-List of the IP addresses of the machines being monitored
+List of the IP addresses of the machines being monitored:
 __Web-1 : 10.0.0.5__
 __Web-2 : 10.0.0.6__
 
 We installed installed the following Beats on these machines:
 
-[__Filebeat__](Ansible/filebeat.png)
-[__Metricbeat__](Ansible/metricbeat.png)
+[__Filebeat__](Ansible/filebeat.PNG)
+[__Metricbeat__](Ansible/metricbeat.PNG)
 
 These Beats allow us to collect the following information from each machine:
 
