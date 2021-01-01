@@ -84,7 +84,8 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
 		
 	* The following tasks were added to the playbook file:
 
-		* Set the `vm.max_map_count` to `262144` so the target VM, ELK-Server to use more memory. The ELK container will not run without this setting.
+		* Set the `vm.max_map_count` to `262144` so the target VM, ELK-Server to use more memory.
+		  The ELK container will not run without this setting.
 
 		* Installed the following `apt` packages:
 
@@ -114,12 +115,14 @@ The following screenshot displays the result of running `docker ps` after succes
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 List of the IP addresses of the machines being monitored:
+
 __Web-1 : 10.0.0.5__
 __Web-2 : 10.0.0.6__
 
 We installed installed the following Beats on these machines:
 
 [__Filebeat__](Ansible/filebeat.PNG)
+
 [__Metricbeat__](Ansible/metricbeat.PNG)
 
 These Beats allow us to collect the following information from each machine:
@@ -131,6 +134,7 @@ These Beats allow us to collect the following information from each machine:
 •	Examples of Metricbeat can be CPU usage/Uptime, number of users visited the web server etc.
 
 ##__Using the Playbook__
+
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
