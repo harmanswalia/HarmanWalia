@@ -119,7 +119,7 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
 
 
 
-The following screenshot displays the result of running [`docker ps`](Ansible/ELK-Server docker ps.PNG) after successfully configuring the ELK instance.
+The following screenshot displays the result of running [`Docker ps`](Ansible/ELK-Server docker ps.PNG) after successfully configuring the ELK instance.
 
 ![docker ps](Ansible\ELK-Server\ docker\ ps.PNG)
 
