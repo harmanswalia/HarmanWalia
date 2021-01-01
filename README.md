@@ -49,10 +49,10 @@ The configuration details of each machine may be found below.
 | \ELK-Server | Virtual Machine | 10.1.0.4(Private)//13.68.153.197(Public) | Linux            |
 
 ### Access Policies
-The machines on the internal network are not exposed to the public Internet. 
-Only the Jump-Box-Provisioner machine can accept connections from the Internet. 
+The machines on the internal network are not exposed to the public Internet 
+Only the Jump-Box-Provisioner machine can accept connections from the Internet
 Access to this machine is only allowed from the following IP addresses
-_99.234.136.232 (workstation IP address)_
+__99.234.136.232 (workstation IP address)__
 
 Machines within the network can only be accessed by __Jump-Box-Provisioner.__
 The same machine is allowed to access the ELK VM
@@ -69,14 +69,45 @@ A summary of the access policies in place can be found in the table below.
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because:
-. The usage of YAML playbooks help with the configuration of the complex and multi-tier IT environment.
-. Ansible was able to provision various packages and dependencies on multiple Virtual Machines with the help of a YAML playbook saving significant amount of time and    
+* The usage of YAML playbooks help with the configuration of the complex and multi-tier IT environment.
+* Ansible was able to provision various packages and dependencies on multiple Virtual Machines with the help of a YAML playbook saving significant amount of time and    
   resources. 
-. In our project e were able to configure DVWA(Dmn Vulnerable Web Application) and ELK stack on different VMs  with the help of these playbooks.
+* In our project e were able to configure DVWA(Dmn Vulnerable Web Application) and ELK stack on different VMs  with the help of these playbooks.
 
 
-The playbook implements the following tasks:
+The ELK installation playbook [Install-ELK](Ansible/Install-Elk.yml) implements the following tasks:
 - _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
+
+	- To create this playbook, continue using your terminal to complete the following steps:
+
+		- From the Ansible container, Created a new playbook: install-elk.yml
+
+		the header of the playbook specified `elk` as the target hosts, it was updated on Ansible[HOSTS](Ansible/hosts.png)
+		
+	- The following tasks were added to the playbook file:
+
+		- Set the `vm.max_map_count` to `262144` so the target VM, ELK-Server to use more memory. The ELK container will not run without this setting.
+
+		 -  Installed the following `apt` packages:
+
+		    - `docker.io`: The Docker engine, used for running containers.
+			- `python3-pip`: Package used to install Python software.
+
+		- Installed the following `pip` packages:
+
+  		   - `docker`: Python client for Docker. Required by Ansbile to control the state of Docker containers.
+
+		- Downloaded the Docker container called `sebp/elk:761`. `sebp` is the organization that made the container. `elk` is the container and `761` is the version.
+
+		- Configured the container to start with the following port mappings:
+			- `5601:5601`
+			- `9200:9200`
+			- `5044:5044`
+
+   		 Executed the install-ELK.yml with command “ansible -playbook install-ELK.yml”. Verified the connection to the ELK stack container by “docker ps” command.
+
+		- Started the container.
+
 •	SSH into the Jump-Box-Provisioner (ssh azadmin@99.234.136.232). The authentication was made possible by the public key
 •	Started and attached to the ansible docker container (sudo docker start Interesting_ganguly)/(sudo docker attach Interesting_ganguly)
 •	Created the ELK playbook in /etc/ansible directory, the filename is install-ELK.yml.
