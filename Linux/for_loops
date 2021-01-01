@@ -1,0 +1,12 @@
+#!/bin/bash
+mycity=('Nebraska' 'Hawaii' 'California' 'Maryland' 'NewYork')
+for city in ${mycity[@]}
+do
+	if [ $city = 'Hawaii' ]
+	then
+echo " it is teh best"
+else 
+echo "I am not fond of it"
+fi
+done
+
