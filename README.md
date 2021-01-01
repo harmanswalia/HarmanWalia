@@ -121,7 +121,7 @@ The ELK installation playbook [Install-ELK](Ansible/install-elk.yml) is created 
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-[docker ps](Ansible/ELK-Server docker ps.PNG)
+![docker ps](Ansible/ELK-Server docker ps.PNG)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
