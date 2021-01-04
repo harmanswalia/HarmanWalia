@@ -1,5 +1,5 @@
 ## HarmanWalia
-he purpose of this project is to create, configure and deploy an open-source IT log management solution using ELK Stack on Microsoft Azure cloud platform.
+The purpose of this project is to create, configure and deploy an open-source IT log management solution using ELK Stack on Microsoft Azure cloud platform.
 ## __Automated ELK Stack Deployment__
 
 The files in this repository were used to configure the network depicted below.
