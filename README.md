@@ -1,5 +1,5 @@
 ## HarmanWalia
-part of Project1 completed during the Cybersecurity bootcamp in 2020-21
+he purpose of this project is to create, configure and deploy an open-source IT log management solution using ELK Stack on Microsoft Azure cloud platform.
 ## __Automated ELK Stack Deployment__
 
 The files in this repository were used to configure the network depicted below.
